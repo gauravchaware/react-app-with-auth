@@ -16,8 +16,21 @@ class Auth extends Component {
   handleSubmit = values => {
     // eslint-disable-next-line no-shadow
     const { postAuth } = this.props;
-    postAuth(values);
+    const postAuthData = {
+      requestData : values,
+      onSuccess: this.postAuthSuccess,
+      onError: this.postAuthFailuer
+    }
+    postAuth(postAuthData);
   };
+
+  postAuthSuccess = (res) => {
+    console.log('@@ Result postAuthSuccess res', res);
+  }
+
+  postAuthFailuer = (error) => {
+    console.log('@@ Error postAuthFailuer res', error);
+  }
 
   render() {
     const { loading, error } = this.props;

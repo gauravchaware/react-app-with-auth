@@ -21,8 +21,22 @@ class Layout extends PureComponent {
   onSearch = value => {
     // eslint-disable-next-line no-shadow
     const { getPlanets } = this.props;
-    getPlanets(value);
+
+    const getPlanetsData = {
+      requestData : value,
+      onSuccess: this.getPlanetsSuccess,
+      onError: this.getPlanetsFailuer
+    }
+    getPlanets(getPlanetsData);
   };
+
+  getPlanetsSuccess = (res) => {
+    console.log('@@ Result getPlanetsSuccess res', res);
+  }
+
+  getPlanetsFailuer = (error) => {
+    console.log('@@ Error getPlanetsFailuer res', error);
+  }
 
   onChange = name => {
     // eslint-disable-next-line no-shadow
